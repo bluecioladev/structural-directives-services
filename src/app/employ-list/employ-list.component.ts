@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class EmployListComponent implements OnInit {
 
   public employees = [] as any;
+  public errorMsg :any;
 
 
 
@@ -16,7 +17,9 @@ export class EmployListComponent implements OnInit {
 
   ngOnInit(): void{
 
-    this.employees=this._employeeService.getEmployees();
+    this._employeeService.getEmployees()
+      .subscribe(data=> this.employees =data,
+                error => this.errorMsg=error);
   }
 
 }
